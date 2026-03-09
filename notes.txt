@@ -1,0 +1,423 @@
+step 1 :npm create vite@latest
+step 2 :delete app.css and remove app.jsx code and type rafce comment
+step 3 :type cd client and write this com: npm install lucide-react react-router-dom
+
+and import same comment in index.css in get front website use code after we create one folder name pages amd files as dashboard. type rafce and also create file Home.jsx and also create file layout.jsx and also create login.jsx and also preview.jsx and also create resumebuilder.jsx.
+step 4 : create component folder.
+
+step 5: import tailwing style website ;https://prebuiltui.com and http://localhost:5173/
+
+
+
+
+
+
+import { PlusIcon, UploadCloudIcon, FilePenLineIcon, TrashIcon, PencilIcon } from 'lucide-react';
+import React, {useState,} from 'react'
+import { dummyResumeData } from '../assets/assets';
+
+
+const Dashboard = () => {
+
+  const colors = ["#9333ea", "#d97706", "#dc2626", "#0284c7", "#16a34a"];
+ const [allResumes] = useState(dummyResumeData)
+
+ 
+  
+    return (
+    <div>
+        <div className='max-w-7xl mx-auto px-4 py-8'>
+            <p className='text-2xl font-medium mb-6 bg-gradient-to-r from-slate-600 to-slate-700 bg-clip-text text-transparent sm:hidden'>
+              Welcome, karthik
+              </p>
+            <div className='flex gap-4'>
+              <button className='w-full bg-white sm:max-w-36 h-48 flex flex-col items-center
+justify-center rounded-lg gap-2 text-slate-600 border border-dashed
+border-slate-300 group hover:border-indigo-500 hover: shadow-lg transition-all
+duration-300 cursor-pointer'>
+                <PlusIcon className='size-11 transition-all duration-300 p-2.5
+                bg-gradient-to-br from-green-300 to-green-500 text-white rounded-full'/>
+                <p className='text-sm group-hover: text-indigo-600 transition-all
+duration-300'>Create Resume</p>
+              </button>
+
+              <button className='w-full bg-white sm:max-w-36 h-48 flex flex-col items-center
+justify-center rounded-lg gap-2 text-slate-600 border border-dashed
+border-slate-300 group hover:border-purple-500 hover: shadow-lg transition-all
+duration-300 cursor-pointer'>
+                <UploadCloudIcon className='size-11 transition-all duration-300 p-2.5
+                bg-gradient-to-br from-purple-300 to-purple-500 text-white rounded-full'/>
+                <p className='text-sm group-hover: text-purple-600 transition-all
+duration-300'>Upload Existing</p>
+              </button>
+
+
+            </div>  
+
+            <hr className='border-slate-300 my-6 sm:w-[305px]'/>
+            <div className='grid grid-cols-2 sm:flex flex-wrap gap-4'>
+              {allResumes.map((resume, index) => {
+                const baseColor = colors[index % colors.length];
+                return (
+                  <button key={index} className='relative w-full sm:max-w-36 h-48 flex
+flex-col items-center justify-center rounded-lg gap-2 border group
+hover:shadow-lg transition-all duration-300 cursor-pointerl' style={{background: `linear-gradient(135deg, ${baseColor}10, ${baseColor}40)`,borderColor: baseColor + '40'}}>
+                    
+                    <FilePenLineIcon className="size-7 group-hover:scale-105
+transition-all" style={{ color: baseColor }}/>
+I
+<p className='text-sm group-hover:scale-105 transition-all px-2
+text-center' style={{ color: baseColor }}>{resume.title}</p>
+<p className='absolute bottom-1 text-[11px] text-slate-400
+group-hover: text-slate-500 transition-all duration-300 px-2
+text-center' style={{ color: baseColor + '90' }}>
+  Updated on {new Date(resume.updatedAt).toLocaleDateString()}
+</p>
+               
+               <div className='absolute top-1 right-1 group-hover:flex items-center
+hidden'>
+<TrashIcon className="size-7 p-1.5 hover:bg-white/50 rounded
+text-slate-700 transition-colors"/>
+<PencilIcon className="size-7 p-1.5 hover:bg-white/50 rounded
+text-slate-700 transition-colors"/>
+</div>
+
+
+
+                  </button>
+                )
+                
+              })}
+            </div>
+        </div>
+    </div>
+
+  )
+}
+
+export default Dashboard
+
+
+
+////preview.jsx
+
+import React from 'react'
+
+const Preview = () => {
+  return (
+    <div>
+        <h1>Preview Page</h1>
+    </div>
+  )
+}
+
+export default Preview
+
+
+////login.jsx
+
+
+import { Lock, Mail, User2Icon } from 'lucide-react'
+import React from 'react'
+
+const Login = () => {
+  const query = new URLSearchParams(window.location.search)
+  const urlstate = query.get('state')
+
+  const [state, setState] = React.useState(urlstate || "login")
+
+    const [formData, setFormData] = React.useState({
+        name: '',
+        email: '',
+        password: ''
+    })
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+    }
+
+    const handleChange = (e) => {
+        const { name, value } = e.target
+        setFormData(prev => ({ ...prev, [name]: value }))
+    }
+  return (
+    <div className='flex items-center justify-center min-h-screen bg-gray-50'>
+        <form onSubmit={handleSubmit} className="sm:w-87.5 w-full text-center border border-gray-300/60 rounded-2xl px-8 bg-white">
+                <h1 className="text-gray-900 text-3xl mt-10 font-medium">{state === "login" ? "Login" : "Sign up"}</h1>
+                <p className="text-gray-500 text-sm mt-2">Please {state} to continue</p>
+                {state !== "login" && (
+                    <div className="flex items-center mt-6 w-full bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
+                      <User2Icon size={16} color='#6B7280'/>
+                      <input type="text" name="name" placeholder="Name" className="border-none outline-none ring-0" value={formData.name} onChange={handleChange} required />
+                    </div>
+                )}
+                <div className="flex items-center w-full mt-4 bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
+                    <Mail size={13} color='#6B7280'/>
+                    <input type="email" name="email" placeholder="Email id" className="border-none outline-none ring-0" value={formData.email} onChange={handleChange} required />
+                </div>
+                <div className="flex items-center mt-4 w-full bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
+                   <Lock size={13} color='#6B7280'/>
+                    <input type="password" name="password" placeholder="Password" className="border-none outline-none ring-0" value={formData.password} onChange={handleChange} required />
+                </div>
+                <div className="mt-4 text-left text-green-500">
+                    <button className="text-sm" type="reset">Forget password?</button>
+                </div>
+                <button type="submit" className="mt-2 w-full h-11 rounded-full text-white bg-green-500 hover:opacity-90 transition-opacity">
+                    {state === "login" ? "Login" : "Sign up"}
+                </button>
+                <p onClick={() => setState(prev => prev === "login" ? "register" : "login")} className="text-gray-500 text-sm mt-3 mb-11">{state === "login" ? "Don't have an account?" : "Already have an account?"} <a href="#" className="text-green-500 hover:underline">click here</a></p>
+            </form>
+    </div>
+  )
+}
+
+export default Login
+
+
+
+
+
+/////layout.jsx
+
+
+
+
+import React from 'react'
+import { Outlet } from 'react-router-dom'
+import Navbar from '../components/Navbar'
+
+
+
+const Layout = () => {
+  return (
+    <div>
+        
+        <div className='min-h-screen bg-gray-50'>
+            <Navbar />
+            <Outlet />
+        </div>
+    </div>
+  )
+}
+
+export default Layout
+
+
+
+
+
+//////Navbar.jsx
+
+
+
+import React from 'react'
+import { Outlet } from 'react-router-dom'
+import Navbar from '../components/Navbar'
+
+
+
+const Layout = () => {
+  return (
+    <div>
+        
+        <div className='min-h-screen bg-gray-50'>
+            <Navbar />
+            <Outlet />
+        </div>
+    </div>
+  )
+}
+
+export default Layout
+
+
+
+////app.jsx
+
+
+
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Home from './pages/Home'
+import ResumeBuilder from './pages/ResumeBuilder'
+import Preview from './pages/Preview'
+import Login from './pages/Login'
+import Layout from './pages/Layout'
+import Dashboard from './pages/Dashboard'
+
+
+const App = () => {
+  return (
+    <>
+    <Routes>
+      <Route path='/' element={<Home />} />
+
+      <Route path='app' element={<Layout />}>
+      <Route index element={<Dashboard />} />
+      <Route path='builder/:resumeId' element={<ResumeBuilder />} />
+      </Route>
+
+      
+      <Route path='view/:resumeId' element={<Preview />} />
+      <Route path='login' element={<Login />} />
+
+
+    </Routes>
+
+    </>
+  )
+}
+
+export default App
+
+
+important code///////
+
+
+ const [allResumes, setAllResumes] = useState([])
+
+ const loadAllResumes = async () => {
+  // API call to fetch all  resumes of the user
+  // For now, we will use dummy data
+  setAllResumes(dummyResumeData)
+ }
+
+ useEffect(() => {
+  loadAllResumes();
+ }, []);
+
+
+
+\\\\\\\\\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+////resumebuilder
+import React from 'react'
+import { dummyResumeData } from '../assets/assets';
+import { Link, useParams } from 'react-router-dom';
+import { ArrowLeftIcon, Briefcase, ChevronLeft, FileText, FolderIcon, GraduationCap, Sparkles, User } from 'lucide-react';
+import { useState, useEffect, useCallback } from 'react';
+import PersonalInfoForm from '../components/PersonalInfoForm';
+const ResumeBuilder = () => {
+
+  const { resumeId} = useParams();
+
+  const [resumeData, setResumeData] = useState({
+    _id: '',
+    title: '',
+    personal_info: {},
+    professional_summary: '',
+    experience: [],
+    education: [],
+    project: [],
+    skills: [],
+    template: '',
+    accent_color: '',
+    public: false,
+  })
+
+  const loadExistingResume = useCallback(async () => {
+    const resume = dummyResumeData.find(resume => resume._id === resumeId);
+    if(resume) {
+      setResumeData(resume)
+      document.title = resume.title;
+    }
+  },[resumeId]);
+  const [activeSectionIndex, setActiveSectionIndex] = useState(0)
+  const [removeBackground, setRemoveBackground] = useState(false);
+
+  const section = [
+    { id: 'personal_info', name: 'Personal Info', icon: User },
+    { id: 'summary', name: 'Summary', icon: FileText },
+    { id: 'experience', name: 'Experience', icon: Briefcase},
+    { id: 'education', name: 'Education', icon: GraduationCap},
+    { id: 'project', name: 'Project', icon: FolderIcon},
+    { id: 'skills', name: 'Skills', icon: Sparkles},
+
+  ]
+
+  const activeSection = section[activeSectionIndex]
+
+ useEffect(() => {
+  const load = async () => {
+    await loadExistingResume();
+  };
+  load();
+}, [loadExistingResume]);
+
+
+  return (
+    <div>
+
+      <div>
+        <Link to={'/app'} className='inline-flex gap-2 item-center text-center text-slate-500 hover:text-slate-700 transition-all'>
+          <ArrowLeftIcon className='size-4'/> Back to Dashboard
+        
+        </Link>
+      </div>
+
+      <div className='max-w-7xl mx-auto px-4 pb-8'>
+        <div className='grid lg:grid-cols-3 gap-8'>
+          {/* Left panel - form */}
+          <div className='relative lg:col-span-5 rounded-lg overflow-hidden'>
+            <div className='bg-white rounded-lg shadow-sm border border-gray-200 p-6 pt-1'>
+              {/* progress bar using  activeSectionIndex*/}
+              <hr className='absolute top-0 left-0 right-0 border-2 border-gray-200'/>
+              <hr className='absolute top-0 left-0 h-1 bg-gradient-to-r from-green-500 to-green-600 border-none transition-all duration-2000'
+               style={{width: `${activeSectionIndex * 100 / (section.length - 1)}%`}}/>
+
+               {/*section navigaton*/}
+               <div className='flex justify-between items-center mb-6 border-b border-gray-300 py-1'>
+                <div></div>
+                <div className='flex items-center'>
+                  {activeSectionIndex !== 0 && (
+                    <button className='flex items-center gap-1 p-3 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all' disabled={activeSectionIndex === 0} onClick={()=> setActiveSectionIndex((prevIndex) => Math.max(0, prevIndex - 1))}>
+                      <ChevronLeft className='size-4'/> Previous
+                    </button>
+                  )}
+
+
+                      <button className={`flex items-center gap-1 p-3 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all ${activeSectionIndex === section.length - 1 && 'opacity-50'}`} disabled={activeSectionIndex === section.length - 1} onClick={()=> setActiveSectionIndex((prevIndex) => Math.min(section.length - 1, prevIndex + 1))}>
+                      <ChevronRight className='size-4'/> Next
+                    </button>
+
+                </div>
+
+               </div>
+
+                {/* form content */}
+               <div className='space-y-6'>
+                {activeSection.id === 'personal' && (
+                  <PersonalInfoForm data={resumeData.personal_info} onChange={(data)=>setResumeData(prev=> ({...prev, personal_info:data}))} removeBackground={removeBackground} setRemoveBackground={setRemoveBackground}/>
+                )
+
+                }
+
+               </div>
+
+            </div>
+
+          </div>
+
+          {/* Right panel - resume preview */}
+          <div></div>
+        </div>
+      </div>
+    
+    </div>
+  )
+}
+
+export default ResumeBuilder
