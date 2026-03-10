@@ -1,4 +1,3 @@
-
 import React from 'react'
 import ClassicTemplate from './templates/ClassicTemplate'
 import ModernTemplate from './templates/ModernTemplate'
@@ -29,7 +28,7 @@ const ResumePreview = ({data, template, accentColor, classes = ""}) => {
      
         </div>
 
-        <style jsx>
+        <style>
             {`
 
             {@page {
@@ -59,8 +58,8 @@ const ResumePreview = ({data, template, accentColor, classes = ""}) => {
             box-shadow: none !important;
             border: none !important;
             }
+            
             }
-
       
             `}
         </style>
@@ -70,3 +69,9 @@ const ResumePreview = ({data, template, accentColor, classes = ""}) => {
 }
 
 export default ResumePreview
+
+
+
+
+
+
