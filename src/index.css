@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import "tailwindcss";
+*{
+   font-family: "Outfit", sans-serif;
+}
+
+@layer base {
+   button {
+      @apply cursor-pointer;
+   }
+   input:not([type="checkbox"]){
+      @apply outline-none focus:ring border border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg;
+
+   }
+   textarea {
+      @apply outline-none focus:ring border border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg resize-none;
+   }
+}
+
+@media print {
+  /* Hide everything */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Show only the resume preview and its children */
+  #resume-preview-section,
+  #resume-preview-section * {
+    visibility: visible;
+  }
+
+  /* Position it to fill the page */
+  #resume-preview-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+ @page {
+    size: A4;
+    margin: 0;
+  }
+
+}
